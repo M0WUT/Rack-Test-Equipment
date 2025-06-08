@@ -180,7 +180,7 @@
 		(path "/969933fa-8885-429e-babc-72b819d7b6aa")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -282,7 +282,7 @@
 		(path "/fadbb024-057b-4e3a-a053-f3dc6d47f4a5")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -384,6 +384,7 @@
 		(path "/986912d3-0f3d-49cd-bf33-e5a10001cc80")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_text user "${REFERENCE}"
 			(at 0 2.5 0)
 			(unlocked yes)
@@ -402,7 +403,7 @@
 			(drill oval 9.525 6.35)
 			(layers "*.Cu" "*.Mask")
 			(thermal_bridge_angle 45)
-			(uuid "a2ef6f34-734a-469d-a44e-f10eb71d7326")
+			(uuid "32d978b3-65bc-49cc-9160-211875e312dc")
 		)
 		(embedded_fonts no)
 	)
@@ -465,7 +466,7 @@
 		(path "/318818cd-299c-49b1-8bc8-c0444ab0a47e")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -567,7 +568,7 @@
 		(path "/98730635-aff3-4533-813e-ec50be0c10a1")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -669,6 +670,7 @@
 		(path "/fc97d93f-63db-49d6-970d-3c16c4d95eac")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_text user "${REFERENCE}"
 			(at 0 2.5 0)
 			(unlocked yes)
@@ -687,7 +689,7 @@
 			(drill oval 9.525 6.35)
 			(layers "*.Cu" "*.Mask")
 			(thermal_bridge_angle 45)
-			(uuid "956625b1-d064-4a9d-8c84-61b337054dc3")
+			(uuid "2cb8472a-1c7b-4b86-88cc-932f13a19d7d")
 		)
 		(embedded_fonts no)
 	)
@@ -750,7 +752,7 @@
 		(path "/437854a9-93d6-4371-8ac6-d741c7406194")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -852,7 +854,7 @@
 		(path "/fe2f43e6-5a5a-467c-abb3-80aa7df86db5")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -1393,6 +1395,7 @@
 		(path "/1338b0e0-3713-4ad7-9781-260cf7250ba0")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_text user "${REFERENCE}"
 			(at 0 2.5 0)
 			(unlocked yes)
@@ -1411,7 +1414,7 @@
 			(drill oval 9.525 6.35)
 			(layers "*.Cu" "*.Mask")
 			(thermal_bridge_angle 45)
-			(uuid "4bf8dcd4-a9d1-4eb6-8226-6ea91fb29648")
+			(uuid "0f979797-4020-4d4f-a30a-6b5433e589a2")
 		)
 		(embedded_fonts no)
 	)
@@ -1474,6 +1477,7 @@
 		(path "/516bbf88-0b61-4cac-8d3e-6dd5d8579766")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_text user "${REFERENCE}"
 			(at 0 2.5 0)
 			(unlocked yes)
@@ -1492,7 +1496,7 @@
 			(drill oval 9.525 6.35)
 			(layers "*.Cu" "*.Mask")
 			(thermal_bridge_angle 45)
-			(uuid "d6afeda1-5007-43a0-8463-48aa3a824e77")
+			(uuid "f94d21ee-9bb1-4299-b842-701c94f847bf")
 		)
 		(embedded_fonts no)
 	)
@@ -1555,7 +1559,7 @@
 		(path "/cb9e92f2-ed7e-49d1-83b6-8d1fe451881b")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -1657,7 +1661,7 @@
 		(path "/9d175fd8-87df-4b5c-ab7d-a4356d8e3ab3")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -1759,7 +1763,7 @@
 		(path "/e4293c1d-6eed-43e3-8fc9-1ae8ddbf6391")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -1861,7 +1865,7 @@
 		(path "/fd83a529-5d07-4aae-9026-1dd4cbca8dd3")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -1963,7 +1967,7 @@
 		(path "/607fcea2-0d69-4d34-a3fb-17414701967c")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -2065,7 +2069,7 @@
 		(path "/2f4f20c9-a538-4b14-b533-969033d6f079")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -2167,7 +2171,7 @@
 		(path "/ed7c28e8-3315-4c95-a5c1-89210239147e")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -2269,7 +2273,7 @@
 		(path "/9bb08b8a-616c-457f-99c1-82c9a04283be")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -2371,7 +2375,7 @@
 		(path "/e8c87de9-8dc1-439d-aab0-fe3842ccb128")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)
@@ -2473,7 +2477,7 @@
 		(path "/0d245d02-303b-4aee-8d52-32fe7f3a5461")
 		(sheetname "/")
 		(sheetfile "Rack Plate.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.75 0)

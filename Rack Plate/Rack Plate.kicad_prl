@@ -5,7 +5,7 @@
     "auto_track_width": true,
     "hidden_netclasses": [],
     "hidden_nets": [],
-    "high_contrast_mode": 1,
+    "high_contrast_mode": 0,
     "net_color_mode": 1,
     "opacity": {
       "images": 0.6,
@@ -115,19 +115,19 @@
     "files": [
       {
         "name": "Rack Plate.kicad_pcb",
-        "open": true,
+        "open": false,
         "window": {
           "display": 0,
-          "maximized": false,
-          "pos_x": -8,
-          "pos_y": 0,
-          "size_x": 1936,
-          "size_y": 1548
+          "maximized": true,
+          "pos_x": -9,
+          "pos_y": -9,
+          "size_x": 3858,
+          "size_y": 1558
         }
       },
       {
         "name": "Rack Plate.kicad_sch",
-        "open": true,
+        "open": false,
         "window": {
           "display": 0,
           "maximized": false,
