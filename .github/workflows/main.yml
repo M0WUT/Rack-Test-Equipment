@@ -6,7 +6,7 @@ jobs:
   artifacts:
     runs-on: ubuntu-latest
     container:
-      image: kicad/kicad:nightly-202404
+      image: kicad/kicad:9.0
       options: --user root
     steps:
       - name: Everything
@@ -29,9 +29,9 @@ jobs:
           chmod 777 build
 
           kicad-cli version
-          rm -r .config/kicad/8.99/*
-          cp -r kicad_releaser/kicad_settings/* .config/kicad/8.99
-          sed -i "s#PATH_TO_WUT_LIBRARIES#$(readlink -f wut-libraries)#" .config/kicad/8.99/kicad_common.json
+          rm -r .config/kicad/9.0/*
+          cp -r kicad_releaser/kicad_settings/* .config/kicad/9.0
+          sed -i "s#PATH_TO_WUT_LIBRARIES#$(readlink -f wut-libraries)#" .config/kicad/9.0/kicad_common.json
 
           cd checkout
           Xvfb :1 &
