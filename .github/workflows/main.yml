@@ -1,0 +1,77 @@
+name: Kicad deployment
+on:
+  push:
+    branches: [ main ]
+jobs:
+  artifacts:
+    runs-on: ubuntu-latest
+    container:
+      image: kicad/kicad:nightly-202404
+      options: --user root
+    steps:
+      - name: Everything
+        run: |
+          
+          apt update
+          apt install -y python3-pip protobuf-compiler xvfb tree
+          HOME=/home/kicad/
+          cd
+
+          git clone --depth 1 ${{ github.server_url }}/${{ github.repository }} checkout
+          git clone --depth 1 https://github.com/M0WUT/kicad_libraries.git wut-libraries
+          git clone --depth 1 https://github.com/openscopeproject/InteractiveHtmlBom.git ibom
+          git clone --depth 1 https://github.com/M0WUT/kicad_releaser.git kicad_releaser
+          # git clone --depth 1 https://gitlab.com/kicad/libraries/kicad-packages3D.git /usr/share/kicad/3dmodels
+          pip install --break-system-packages -r kicad_releaser/requirements.txt
+          pip install --break-system-packages git+https://github.com/yaqwsx/kikit
+
+          mkdir build
+          chmod 777 build
+
+          kicad-cli version
+          rm -r .config/kicad/8.99/*
+          cp -r kicad_releaser/kicad_settings/* .config/kicad/8.99
+          sed -i "s#PATH_TO_WUT_LIBRARIES#$(readlink -f wut-libraries)#" .config/kicad/8.99/kicad_common.json
+
+          cd checkout
+          Xvfb :1 &
+          export DISPLAY=:1
+          python3 ../kicad_releaser/releaser.py . ../build ${{secrets.MOUSER_API_KEY}} ${{secrets.FARNELL_API_KEY}}
+          tree ../build
+          
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: /home/kicad/build/
+
+  # Deploy job
+  deploy:
+    # Add a dependency to the build job
+    needs: artifacts
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Webpage URL
+        run: echo ${{ steps.deployment.outputs.page_url }}
+
+    
+      
+      
+
+      
+          
