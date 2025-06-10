@@ -20,12 +20,12 @@
       "footprints": true,
       "graphics": true,
       "keepouts": false,
-      "lockedItems": true,
+      "lockedItems": false,
       "otherItems": false,
       "pads": false,
-      "text": true,
-      "tracks": false,
-      "vias": false,
+      "text": false,
+      "tracks": true,
+      "vias": true,
       "zones": false
     },
     "visible_items": [
@@ -58,7 +58,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "Rack Plate.kicad_prl",
+    "filename": "Controller.kicad_prl",
     "version": 5
   },
   "net_inspector_panel": {
@@ -114,19 +114,7 @@
   "project": {
     "files": [
       {
-        "name": "Rack Plate.kicad_sch",
-        "open": true,
-        "window": {
-          "display": 0,
-          "maximized": false,
-          "pos_x": 1912,
-          "pos_y": 0,
-          "size_x": 1936,
-          "size_y": 1548
-        }
-      },
-      {
-        "name": "Rack Plate.kicad_pcb",
+        "name": "Controller.kicad_sch",
         "open": false,
         "window": {
           "display": 0,
@@ -138,7 +126,7 @@
         }
       },
       {
-        "name": "Rack Plate.kicad_pro",
+        "name": "Controller.kicad_pcb",
         "open": false,
         "window": {
           "display": 0,
