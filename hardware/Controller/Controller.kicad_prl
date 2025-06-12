@@ -114,18 +114,6 @@
   "project": {
     "files": [
       {
-        "name": "Controller.kicad_sch",
-        "open": false,
-        "window": {
-          "display": 0,
-          "maximized": true,
-          "pos_x": -9,
-          "pos_y": -9,
-          "size_x": 3858,
-          "size_y": 1558
-        }
-      },
-      {
         "name": "Controller.kicad_pcb",
         "open": false,
         "window": {
