@@ -1,5 +1,6 @@
 #include "lvgl.h"
 #include "lcd_settings.h"
+#include "lcd_screens.h"
 #include <TFT_eSPI.h>
 
 static const uint32_t screenWidth = TFT_WIDTH;
@@ -7,28 +8,37 @@ static const uint32_t screenHeight = TFT_HEIGHT;
 lv_color_t black = lv_color_make(0, 0, 0);
 lv_color_t white = lv_color_make(255, 255, 255);
 
-const unsigned int framebufferSize = screenWidth * screenHeight / 10;
-uint16_t framebuffer[3][framebufferSize];
+const unsigned int framebufferSizeBytes = screenWidth * screenHeight * (LV_COLOR_DEPTH / 8) / 10;
+
+void *framebuffer[framebufferSizeBytes];
 
 TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight);
 
 void setup()
 {
-  // put your setup code here, to run once:
+  Serial.begin(115200);
+  // TFT eSPI initialisation
   tft.begin();
-  tft.setRotation(1);
   tft.initDMA();
-  // tft.startWrite();
-  tft.fillScreen(TFT_GREENYELLOW);
 
-  // lv_init();
-  // static auto *lvDisplay = lv_display_create(screenWidth, screenHeight);
-  // lv_display_set_color_format(lvDisplay, LV_COLOR_FORMAT_RGB565);
-  // lv_display_set_flush_cb(lvDisplay, my_disp_flush);
-  // lv_display_set_buffers(lvDisplay, framebuffer[0], framebuffer[1], framebufferSize, LV_DISPLAY_RENDER_MODE_PARTIAL);
+  // LVGL initialisation
+  lv_init();
+  lv_tick_set_cb((lv_tick_get_cb_t)millis);
+
+  // Create display
+  static lv_display_t *lvDisplay = lv_tft_espi_create(screenWidth, screenHeight, framebuffer, sizeof(framebuffer) / sizeof(byte));
+  //  Display settings
+  lv_display_set_color_format(lvDisplay, LV_COLOR_FORMAT_RGB565);
+  lv_display_set_rotation(lvDisplay, LV_DISP_ROTATION_270);
+
+  // Create different screens
+  lv_obj_t *home_screen = make_home_screen();
+
+  // Load home screen
+  lv_scr_load(home_screen);
 }
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
+  lv_task_handler();
 }
