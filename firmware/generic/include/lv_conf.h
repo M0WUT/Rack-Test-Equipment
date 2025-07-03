@@ -28,6 +28,7 @@
 
 /** Color depth: 1 (I1), 8 (L8), 16 (RGB565), 24 (RGB888), 32 (XRGB8888) */
 #define LV_COLOR_DEPTH 16
+#define LV_COLOR_16_SWAP 1
 
 /*=========================
    STDLIB WRAPPER SETTINGS
@@ -88,7 +89,7 @@
  *====================*/
 
 /** Default display refresh, input device read and animation step period. */
-#define LV_DEF_REFR_PERIOD  10      /**< [ms] */
+#define LV_DEF_REFR_PERIOD  20      /**< [ms] */
 
 /** Default Dots Per Inch. Used to initialize default sizes such as widgets sized, style paddings.
  * (Not so important, you can adjust it to modify default sizes and spaces.) */
@@ -1256,7 +1257,7 @@
 #endif
 
 /** Interface for TFT_eSPI */
-#define LV_USE_TFT_ESPI         1
+#define LV_USE_TFT_ESPI         0
 
 /** Driver for evdev input devices */
 #define LV_USE_EVDEV    0

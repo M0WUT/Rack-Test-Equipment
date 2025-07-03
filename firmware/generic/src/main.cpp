@@ -1,41 +1,104 @@
-#include "lvgl.h"
-#include "lcd_settings.h"
-#include "lcd_screens.h"
-#include <TFT_eSPI.h>
+#include "main.h"
 
 static const uint32_t screenWidth = TFT_WIDTH;
 static const uint32_t screenHeight = TFT_HEIGHT;
-lv_color_t black = lv_color_make(0, 0, 0);
-lv_color_t white = lv_color_make(255, 255, 255);
 
 const unsigned int framebufferSizeBytes = screenWidth * screenHeight * (LV_COLOR_DEPTH / 8) / 10;
+void *framebuffer[2][framebufferSizeBytes];
 
-void *framebuffer[framebufferSizeBytes];
+static lv_display_t *disp;
 
-TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight);
+// DMA / SPI Stuff
+SPISettings spiSettings = SPISettings(40000000, MSBFIRST, SPI_MODE0);
+volatile bool dmaBusy = false;
+EventResponder callbackHandler;
+
+static void lcd_send_cmd(lv_display_t *disp, const uint8_t *cmd, size_t cmdSize, const uint8_t *param, size_t paramSize)
+{
+  // Commands are sent rarely
+  // so don't bother with DMA
+  LV_UNUSED(disp);
+  SPI.beginTransaction(spiSettings);
+
+  digitalWriteFast(TFT_DC, 0);
+  digitalWriteFast(TFT_CS, 0);
+  for (size_t i = 0; i < cmdSize; i++)
+  {
+    SPI.transfer(cmd[i]);
+  }
+
+  digitalWriteFast(TFT_DC, 1);
+  for (size_t i = 0; i < paramSize; i++)
+  {
+    SPI.transfer(param[i]);
+  }
+  digitalWriteFast(TFT_CS, 1);
+  SPI.endTransaction();
+}
+
+void dmaCallback(EventResponderRef eventResponder)
+{
+  SPI.endTransaction();
+  digitalWriteFast(TFT_CS, HIGH);
+  dmaBusy = false;
+  lv_display_flush_ready(disp);
+}
+
+static void lcd_send_colour(lv_display_t *disp, const uint8_t *cmd, size_t cmd_size, uint8_t *param, size_t param_size)
+{
+  LV_UNUSED(disp);
+  SPI.beginTransaction(spiSettings);
+  digitalWriteFast(TFT_DC, 0);
+  digitalWriteFast(TFT_CS, 0);
+  for (size_t i = 0; i < cmd_size; i++)
+  {
+    SPI.transfer(cmd[i]);
+  }
+  digitalWriteFast(TFT_DC, 1);
+  SPI.transfer((void *)param, nullptr, param_size, callbackHandler);
+}
 
 void setup()
 {
-  Serial.begin(115200);
-  // TFT eSPI initialisation
-  tft.begin();
-  tft.initDMA();
+  pinMode(TFT_RST, OUTPUT);
+  digitalWriteFast(TFT_RST, HIGH);
+
+  pinMode(TFT_DC, OUTPUT);
+  digitalWriteFast(TFT_DC, HIGH);
+
+  pinMode(TFT_CS, OUTPUT);
+  digitalWriteFast(TFT_CS, HIGH);
+
+  Serial.begin(9600);
+  SPI.begin();
+
+  callbackHandler.attachImmediate(&dmaCallback);
 
   // LVGL initialisation
   lv_init();
   lv_tick_set_cb((lv_tick_get_cb_t)millis);
 
-  // Create display
-  static lv_display_t *lvDisplay = lv_tft_espi_create(screenWidth, screenHeight, framebuffer, sizeof(framebuffer) / sizeof(byte));
-  //  Display settings
-  lv_display_set_color_format(lvDisplay, LV_COLOR_FORMAT_RGB565);
-  lv_display_set_rotation(lvDisplay, LV_DISP_ROTATION_270);
+  // Reset LCD
+  digitalWriteFast(TFT_RST, 0);
+  delay(100);
+  digitalWriteFast(TFT_RST, 1);
+  delay(100);
+  // Display setup
+  disp = lv_st7789_create(TFT_WIDTH, TFT_HEIGHT, LV_LCD_FLAG_NONE, lcd_send_cmd, lcd_send_colour);
+  lv_st7789_set_invert(disp, true);
+  lv_display_set_rotation(disp, LV_DISPLAY_ROTATION_270);
 
-  // Create different screens
-  lv_obj_t *home_screen = make_home_screen();
+  // Buffers
+  lv_display_set_buffers(disp, framebuffer[0], framebuffer[1], framebufferSizeBytes, LV_DISPLAY_RENDER_MODE_PARTIAL);
 
-  // Load home screen
-  lv_scr_load(home_screen);
+  lv_obj_t *main_scr = lv_obj_create(NULL);
+  lv_obj_set_style_bg_color(main_scr, lv_color_black(), 0);
+  lv_screen_load(main_scr);
+
+  lv_obj_t *spinner = lv_spinner_create(main_scr);
+  lv_obj_set_size(spinner, 240, 240);
+  lv_obj_center(spinner);
+  lv_spinner_set_anim_params(spinner, 1000, 200);
 }
 
 void loop()

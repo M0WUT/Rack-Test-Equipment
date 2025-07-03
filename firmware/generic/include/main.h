@@ -1,9 +1,10 @@
-#define SPI_PORT 0
+#ifndef MAIN_H
+#define MAIN_H
+#include "lvgl.h"
+#include "lcd_screens.h"
+#include <Arduino.h>
+#include <SPI.h>
+#include "pinout.h"
+#include "lcd_properties.h"
 
-#define PIN_SCLK 2
-#define PIN_MOSI 3
-#define PIN_MISO 4
-#define PIN_DC 6
-#define PIN_CSn 5
-#define PIN_RSTn 7
-#define PIN_BL 8
+#endif
