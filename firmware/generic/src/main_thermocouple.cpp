@@ -15,25 +15,23 @@ EventResponder callbackHandler;
 
 static void lcd_send_cmd(lv_display_t *disp, const uint8_t *cmd, size_t cmdSize, const uint8_t *param, size_t paramSize)
 {
-  // Commands are sent rarely
+  // Commands are only sent on startup
   // so don't bother with DMA
   LV_UNUSED(disp);
   SPI.beginTransaction(spiSettings);
-
   digitalWriteFast(TFT_DC, 0);
   digitalWriteFast(TFT_CS, 0);
   for (size_t i = 0; i < cmdSize; i++)
   {
     SPI.transfer(cmd[i]);
   }
-
   digitalWriteFast(TFT_DC, 1);
   for (size_t i = 0; i < paramSize; i++)
   {
     SPI.transfer(param[i]);
   }
-  digitalWriteFast(TFT_CS, 1);
   SPI.endTransaction();
+  digitalWriteFast(TFT_CS, 1);
 }
 
 void dmaCallback(EventResponderRef eventResponder)
