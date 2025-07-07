@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MAIN_THERMOCOUPLE_H
+#define MAIN_THERMOCOUPLE_H
 #include "lvgl.h"
 #include "lcd_screens.h"
 #include <Arduino.h>
