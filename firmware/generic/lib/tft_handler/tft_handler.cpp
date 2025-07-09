@@ -53,17 +53,18 @@ void TFTHandler::lcd_send_cmd(lv_display_t *disp, const uint8_t *cmd, size_t cmd
     _pspi->endTransaction();
 }
 
-void TFTHandler::lcd_send_colour(lv_display_t *disp, const uint8_t *cmd, size_t cmd_size, uint8_t *param, size_t paramSize)
+void TFTHandler::lcd_send_colour(lv_display_t *disp, const uint8_t *cmd, size_t cmdSize, uint8_t *param, size_t paramSize)
 {
     LV_UNUSED(disp);
     _pspi->beginTransaction(_spiSettings);
     digitalWriteFast(_gpioDc, 0);
     digitalWriteFast(_gpioCs, 0);
-    for (size_t i = 0; i < cmd_size; i++)
+    for (size_t i = 0; i < cmdSize; i++)
     {
         _pspi->transfer(cmd[i]);
     }
     digitalWriteFast(_gpioDc, 1);
+    Serial.println(paramSize);
     _pspi->transfer((void *)param, nullptr, paramSize, _callbackHandler);
 }
 

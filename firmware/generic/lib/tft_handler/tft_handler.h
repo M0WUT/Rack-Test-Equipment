@@ -28,7 +28,7 @@ private:
     int _framebufferSizeBytes;
     void *_buf0;
     void *_buf1;
-    SPISettings _spiSettings = SPISettings(40000000, MSBFIRST, SPI_MODE0);
+    SPISettings _spiSettings = SPISettings(60000000, MSBFIRST, SPI_MODE0);
     lv_display_t *_disp = NULL;
     EventResponder _callbackHandler;
 
