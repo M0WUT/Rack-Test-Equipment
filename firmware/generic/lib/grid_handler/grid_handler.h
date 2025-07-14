@@ -4,7 +4,7 @@
 #include "lvgl.h"
 #include <Arduino.h>
 
-#define MAX_GRID_CELLS 9
+#define MAX_GRID_CELLS 16
 
 class GridHandler
 {
@@ -22,7 +22,7 @@ private:
     int _numCells;
     int _numRows;
     int _numCols;
-    const lv_font_t *_maxSizes[4] = {&lv_font_montserrat_48, &lv_font_montserrat_40, &lv_font_montserrat_28};
+    const lv_font_t *_maxSizes[4] = {&lv_font_montserrat_48, &lv_font_montserrat_40, &lv_font_montserrat_28, &lv_font_montserrat_20};
 };
 
 #endif
